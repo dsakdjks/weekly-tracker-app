@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  base: "/weekly-life-dairy/",
+  base: process.env.VITE_BASE || "/",
 
   root: "public",
 
