@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  base: "/weekly-tracker/",
+  base: "/weekly-life-dairy/",
 
   root: "public",
 
