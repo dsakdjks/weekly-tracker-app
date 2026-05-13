@@ -3,13 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Life Weeks Tracker</title>
-    <link rel="stylesheet" href="styles.css" />
+    <meta
+      name="description"
+      content="Life Weeks Tracker - Track your life in weeks and add meaningful highlights to each week."
+    />
+    <meta name="theme-color" content="#667eea" />
+    <title>Life Weeks Tracker - Your Journey in Weeks</title>
+    <script type="module" crossorigin src="/assets/index-B2s01A2t.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BiJSTlm3.css">
   </head>
   <body>
     <div class="container">
       <header>
         <h1>Life Weeks Tracker</h1>
+        <p class="tagline">Track your life in weeks and celebrate meaningful moments</p>
         <div class="stats">
           <div class="stat-card">
             <div class="stat-label">Total Weeks</div>
@@ -34,6 +41,7 @@
           id="searchInput"
           class="search-input"
           placeholder="Search week..."
+          aria-label="Search weeks"
         />
         <div class="data-controls">
           <button id="exportBtn" class="data-btn" title="Export your data as JSON">
@@ -67,13 +75,14 @@
 
     <div id="modal" class="modal">
       <div class="modal-content">
-        <span class="close">&times;</span>
+        <span class="close" aria-label="Close modal">&times;</span>
         <h2>Week <span id="weekNumber"></span></h2>
         <div class="week-date-info" id="weekDateInfo"></div>
         <label for="highlightsText">Highlights for this week:</label>
         <textarea
           id="highlightsText"
           placeholder="Enter your highlights, achievements, or notes for this week..."
+          aria-label="Week highlights"
         ></textarea>
         <button id="saveBtn" class="save-btn">Save Highlights</button>
       </div>
@@ -81,6 +90,5 @@
 
     <input type="file" id="importFile" style="display: none" accept=".json" />
 
-    <script type="module" src="./index.js"></script>
   </body>
 </html>
