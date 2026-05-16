@@ -4,6 +4,11 @@ export const CONFIG = {
   TARGET_AGE: 100,
   WEEKS_IN_YEAR: 52.1429,
   STORAGE_KEY: 'lifeWeeksHighlights',
+  FOLDER_STORAGE_KEY: 'lifeWeeksSecureFolders',
+  FOLDER_PASSWORD_KEY: 'lifeWeeksFolderPassword',
+  FOLDER_SECURITY_QUESTIONS_KEY: 'lifeWeeksFolderSecurityQuestions',
+  FOLDER_PASSWORD_ATTEMPTS_KEY: 'lifeWeeksFolderPasswordAttempts',
+  FOLDER_SETUP_COMPLETE_KEY: 'lifeWeeksFolderSetupComplete',
   APP_VERSION: '1.0.0'
 };
 

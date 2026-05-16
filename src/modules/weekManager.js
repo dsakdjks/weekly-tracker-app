@@ -20,6 +20,7 @@ export class WeekManager {
 
       const isPassed = weekEndDate < now;
       const isCurrent = weekStartDate <= now && now <= weekEndDate;
+      const weekData = StorageManager.getWeekData(i);
 
       allWeeks.push({
         number: i,
@@ -27,7 +28,9 @@ export class WeekManager {
         endDate: weekEndDate,
         isPassed,
         isCurrent,
-        highlights: StorageManager.getHighlights(i)
+        highlights: weekData.highlights,
+        attachments: weekData.attachments,
+        important: !!weekData.important
       });
     }
 

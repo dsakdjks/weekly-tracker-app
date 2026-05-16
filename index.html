@@ -36,6 +36,9 @@
 
       <div class="controls">
         <button id="toggleBtn" class="toggle-btn">Show All Weeks</button>
+        <button id="themeToggleBtn" class="data-btn" title="Toggle dark/light theme">🌙 Theme</button>
+        <button id="editDobBtn" class="data-btn" title="Change your date of birth">Change DOB</button>
+        <button id="folderBtn" class="data-btn" title="Open secure folder">Folder</button>
         <input
           type="text"
           id="searchInput"
@@ -84,7 +87,238 @@
           placeholder="Enter your highlights, achievements, or notes for this week..."
           aria-label="Week highlights"
         ></textarea>
+        <div class="important-toggle">
+          <label>
+            <input type="checkbox" id="weekImportantInput" />
+            Mark this week as important
+          </label>
+        </div>
+        <div class="file-upload-section">
+          <label for="highlightsFile">Attach files to this week:</label>
+          <input
+            type="file"
+            id="highlightsFile"
+            class="file-input"
+            multiple
+            aria-label="Upload files for this week"
+          />
+          <div id="uploadedFiles" class="uploaded-files"></div>
+        </div>
         <button id="saveBtn" class="save-btn">Save Highlights</button>
+      </div>
+    </div>
+
+    <div id="folderAccessModal" class="modal">
+      <div class="modal-content">
+        <button id="folderAccessClose" class="close" aria-label="Close modal">&times;</button>
+        <h2>Secure Folder</h2>
+        <label id="folderPasswordLabel" for="folderPasswordInput"></label>
+        <input
+          type="password"
+          id="folderPasswordInput"
+          class="modal-input"
+          placeholder="Enter password"
+          aria-label="Folder password"
+        />
+        <div id="folderRecoveryFields" class="folder-recovery-fields hidden">
+          <label for="folderDobInput">Security question 1: Date of birth</label>
+          <input
+            type="text"
+            id="folderDobInput"
+            class="modal-input"
+            placeholder="Enter your date of birth"
+            aria-label="Folder recovery date of birth"
+          />
+          <label for="folderCollegeInput">Security question 2: College name</label>
+          <input
+            type="text"
+            id="folderCollegeInput"
+            class="modal-input"
+            placeholder="Enter your college name"
+            aria-label="Folder recovery college name"
+          />
+        </div>
+        <div class="folder-access-actions">
+          <button id="folderPasswordSubmitBtn" class="save-btn">Submit</button>
+          <button id="folderForgotBtn" class="data-btn">Forgot password?</button>
+        </div>
+        <p id="folderPasswordError" class="input-error"></p>
+      </div>
+    </div>
+
+    <div id="folderManagerModal" class="modal">
+      <div class="modal-content">
+        <button id="folderManagerClose" class="close" aria-label="Close modal">&times;</button>
+        <div class="folder-manager-header">
+          <h2>Secure Folder</h2>
+          <button id="newFolderBtn" class="data-btn">New Folder</button>
+        </div>
+        <div id="folderManagerGrid" class="weeks-grid"></div>
+      </div>
+    </div>
+
+    <div id="folderSetupModal" class="modal">
+      <div class="modal-content folder-setup-modal">
+        <h2>Secure Your Folder</h2>
+        <p>Create a password and security questions to protect your folder</p>
+        
+        <div class="setup-section">
+          <h3>Step 1: Create Password</h3>
+          <label for="folderSetupPasswordInput">Enter Password:</label>
+          <input
+            type="password"
+            id="folderSetupPasswordInput"
+            class="modal-input"
+            placeholder="Enter a strong password"
+            aria-label="Create folder password"
+          />
+          <label for="folderSetupPasswordConfirm">Confirm Password:</label>
+          <input
+            type="password"
+            id="folderSetupPasswordConfirm"
+            class="modal-input"
+            placeholder="Confirm password"
+            aria-label="Confirm folder password"
+          />
+        </div>
+
+        <div class="setup-section">
+          <h3>Step 2: Security Questions</h3>
+          <p class="info-text">Answer these questions to recover your password if you forget it</p>
+          
+          <label for="folderSetupQuestion1">Question 1: What is your date of birth? (YYYY-MM-DD)</label>
+          <input
+            type="text"
+            id="folderSetupQuestion1"
+            class="modal-input"
+            placeholder="e.g., 1990-05-15"
+            aria-label="Security question 1"
+          />
+          
+          <label for="folderSetupQuestion2">Question 2: What college/university did you attend?</label>
+          <input
+            type="text"
+            id="folderSetupQuestion2"
+            class="modal-input"
+            placeholder="e.g., MIT"
+            aria-label="Security question 2"
+          />
+        </div>
+
+        <div id="folderSetupError" class="input-error"></div>
+        <button id="folderSetupBtn" class="save-btn">Complete Setup</button>
+      </div>
+    </div>
+
+    <div id="folderRecoveryModal" class="modal">
+      <div class="modal-content folder-recovery-modal">
+        <h2>Password Recovery</h2>
+        <p>Answer your security questions to reset your password</p>
+        
+        <div class="recovery-section">
+          <label for="folderRecoveryQuestion1">Question 1: What is your date of birth? (YYYY-MM-DD)</label>
+          <input
+            type="text"
+            id="folderRecoveryQuestion1"
+            class="modal-input"
+            placeholder="e.g., 1990-05-15"
+            aria-label="Recovery question 1"
+          />
+          
+          <label for="folderRecoveryQuestion2">Question 2: What college/university did you attend?</label>
+          <input
+            type="text"
+            id="folderRecoveryQuestion2"
+            class="modal-input"
+            placeholder="e.g., MIT"
+            aria-label="Recovery question 2"
+          />
+        </div>
+
+        <div class="recovery-section">
+          <h3>Set New Password</h3>
+          <label for="folderRecoveryNewPassword">New Password:</label>
+          <input
+            type="password"
+            id="folderRecoveryNewPassword"
+            class="modal-input"
+            placeholder="Enter new password"
+            aria-label="New recovery password"
+          />
+          <label for="folderRecoveryConfirmPassword">Confirm Password:</label>
+          <input
+            type="password"
+            id="folderRecoveryConfirmPassword"
+            class="modal-input"
+            placeholder="Confirm new password"
+            aria-label="Confirm new recovery password"
+          />
+        </div>
+
+        <div id="folderRecoveryError" class="input-error"></div>
+        <div class="recovery-actions">
+          <button id="folderRecoverySubmitBtn" class="save-btn">Reset Password</button>
+          <button id="folderRecoveryCancelBtn" class="data-btn">Cancel</button>
+          <button id="folderResetFolderBtn" class="data-btn danger">Reset Folder & Password</button>
+        </div>
+      </div>
+    </div>
+
+      <div id="folderNoteModal" class="modal">
+      <div class="modal-content">
+        <button id="folderNoteClose" class="close" aria-label="Close modal">&times;</button>
+        <h2>Folder Note</h2>
+        <label for="folderTitleInput">Folder Title</label>
+        <input
+          type="text"
+          id="folderTitleInput"
+          class="modal-input"
+          placeholder="Enter folder title"
+          aria-label="Folder title"
+        />
+        <label for="folderDetailsText">Details</label>
+        <textarea
+          id="folderDetailsText"
+          class="modal-input"
+          placeholder="Enter notes for this folder"
+          aria-label="Folder details"
+          rows="8"
+        ></textarea>
+        <div class="important-toggle">
+          <label>
+            <input type="checkbox" id="folderImportantInput" />
+            Mark folder as important
+          </label>
+        </div>
+        <div class="file-upload-section">
+          <label for="folderFileInput">Attach files to this folder:</label>
+          <input
+            type="file"
+            id="folderFileInput"
+            class="file-input"
+            multiple
+            aria-label="Upload files for this folder"
+          />
+          <div id="folderUploadedFiles" class="uploaded-files"></div>
+        </div>
+        <div class="folder-note-actions">
+          <button id="folderSaveBtn" class="save-btn">Save Folder</button>
+          <button id="folderDeleteBtn" class="data-btn">Delete Folder</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="filePreviewOverlay" class="file-preview-overlay" aria-hidden="true">
+      <div class="file-preview-panel" role="dialog" aria-modal="true" aria-labelledby="filePreviewTitle">
+        <button id="filePreviewClose" class="file-preview-close" aria-label="Close preview">&times;</button>
+        <div class="file-preview-header">
+          <h3 id="filePreviewTitle">Preview</h3>
+          <div class="file-preview-actions">
+            <button id="filePreviewOpenBtn" class="preview-btn" disabled>Open in new tab</button>
+            <button id="filePreviewDownloadBtn" class="preview-btn" disabled>Download</button>
+          </div>
+        </div>
+        <div id="filePreviewContent" class="file-preview-content"></div>
       </div>
     </div>
 

@@ -12,10 +12,25 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
+    <div id="dataPreservationAlert" class="data-preservation-alert">
+      <div class="alert-content">
+        <div class="alert-message">
+          <strong>Your data is stored locally in your browser.</strong>
+          <strong>Export before</strong> clearing browser history or site data,
+          then <strong>Import to safely restore</strong> all your data.
+        </div>
+        <button id="closeAlertBtn" class="alert-close" aria-label="Close alert">
+          &times;
+        </button>
+      </div>
+    </div>
+
     <div class="container">
       <header>
         <h1>Life Weeks Tracker</h1>
-        <p class="tagline">Track your life in weeks and celebrate meaningful moments</p>
+        <p class="tagline">
+          Track your life in weeks and celebrate meaningful moments
+        </p>
         <div class="stats">
           <div class="stat-card">
             <div class="stat-label">Total Weeks</div>
@@ -35,6 +50,23 @@
 
       <div class="controls">
         <button id="toggleBtn" class="toggle-btn">Show All Weeks</button>
+        <button
+          id="themeToggleBtn"
+          class="data-btn"
+          title="Toggle dark/light theme"
+        >
+          🌙 Theme
+        </button>
+        <button
+          id="editDobBtn"
+          class="data-btn"
+          title="Change your date of birth"
+        >
+          Change DOB
+        </button>
+        <button id="folderBtn" class="data-btn" title="Open secure folder">
+          Folder
+        </button>
         <input
           type="text"
           id="searchInput"
@@ -43,11 +75,36 @@
           aria-label="Search weeks"
         />
         <div class="data-controls">
-          <button id="exportBtn" class="data-btn" title="Export your data as JSON">
+          <button
+            id="exportBtn"
+            class="data-btn"
+            title="Export your data as JSON"
+          >
             ↓ Export
           </button>
-          <button id="importBtn" class="data-btn" title="Import data from JSON file">
+          <button
+            id="importBtn"
+            class="data-btn"
+            title="Import data from JSON file"
+          >
             ↑ Import
+          </button>
+          <button
+            id="printHighlightsBtn"
+            type="button"
+            class="data-btn"
+            title="Preview and print all week highlights"
+          >
+            Print Highlights
+          </button>
+          <button
+            id="infoBtn"
+            type="button"
+            class="data-btn info-btn"
+            title="Open app information"
+            aria-label="Open app information"
+          >
+            ℹ️ Info
           </button>
         </div>
       </div>
@@ -83,7 +140,384 @@
           placeholder="Enter your highlights, achievements, or notes for this week..."
           aria-label="Week highlights"
         ></textarea>
+        <div class="important-toggle">
+          <label>
+            <input type="checkbox" id="weekImportantInput" />
+            Mark this week as important
+          </label>
+        </div>
+
+        <div class="file-upload-section">
+          <label for="highlightsFile">Attach files to this week:</label>
+          <input
+            type="file"
+            id="highlightsFile"
+            class="file-input"
+            multiple
+            aria-label="Upload files for this week"
+          />
+          <div id="uploadedFiles" class="uploaded-files"></div>
+        </div>
+
         <button id="saveBtn" class="save-btn">Save Highlights</button>
+      </div>
+    </div>
+
+    <div id="folderAccessModal" class="modal">
+      <div class="modal-content">
+        <button id="folderAccessClose" class="close" aria-label="Close modal">
+          &times;
+        </button>
+        <h2>Secure Folder</h2>
+        <label id="folderPasswordLabel" for="folderPasswordInput"></label>
+        <input
+          type="password"
+          id="folderPasswordInput"
+          class="modal-input"
+          placeholder="Enter password"
+          aria-label="Folder password"
+        />
+        <div id="folderRecoveryFields" class="folder-recovery-fields hidden">
+          <label for="folderDobInput">Security question 1: Date of birth</label>
+          <input
+            type="text"
+            id="folderDobInput"
+            class="modal-input"
+            placeholder="Enter your date of birth"
+            aria-label="Folder recovery date of birth"
+          />
+          <label for="folderCollegeInput"
+            >Security question 2: College name</label
+          >
+          <input
+            type="text"
+            id="folderCollegeInput"
+            class="modal-input"
+            placeholder="Enter your college name"
+            aria-label="Folder recovery college name"
+          />
+        </div>
+        <div class="folder-access-actions">
+          <button id="folderPasswordSubmitBtn" class="save-btn">Submit</button>
+          <button id="folderForgotBtn" class="data-btn">
+            Forgot password?
+          </button>
+        </div>
+        <p id="folderPasswordError" class="input-error"></p>
+      </div>
+    </div>
+
+    <div id="folderManagerModal" class="modal">
+      <div class="modal-content">
+        <button id="folderManagerClose" class="close" aria-label="Close modal">
+          &times;
+        </button>
+        <div class="folder-manager-header">
+          <h2>Secure Folder</h2>
+          <button id="newFolderBtn" class="data-btn">New Folder</button>
+        </div>
+        <div id="folderManagerGrid" class="weeks-grid"></div>
+      </div>
+    </div>
+
+    <div id="folderSetupModal" class="modal">
+      <div class="modal-content folder-setup-modal">
+        <h2>Secure Your Folder</h2>
+        <p>Create a password and security questions to protect your folder</p>
+
+        <div class="setup-section">
+          <h3>Step 1: Create Password</h3>
+          <label for="folderSetupPasswordInput">Enter Password:</label>
+          <input
+            type="password"
+            id="folderSetupPasswordInput"
+            class="modal-input"
+            placeholder="Enter a strong password"
+            aria-label="Create folder password"
+          />
+          <label for="folderSetupPasswordConfirm">Confirm Password:</label>
+          <input
+            type="password"
+            id="folderSetupPasswordConfirm"
+            class="modal-input"
+            placeholder="Confirm password"
+            aria-label="Confirm folder password"
+          />
+        </div>
+
+        <div class="setup-section">
+          <h3>Step 2: Security Questions</h3>
+          <p class="info-text">
+            Answer these questions to recover your password if you forget it
+          </p>
+
+          <label for="folderSetupQuestion1"
+            >Question 1: What is your date of birth? (YYYY-MM-DD)</label
+          >
+          <input
+            type="text"
+            id="folderSetupQuestion1"
+            class="modal-input"
+            placeholder="e.g., 1990-05-15"
+            aria-label="Security question 1"
+          />
+
+          <label for="folderSetupQuestion2"
+            >Question 2: What college/university did you attend?</label
+          >
+          <input
+            type="text"
+            id="folderSetupQuestion2"
+            class="modal-input"
+            placeholder="e.g., MIT"
+            aria-label="Security question 2"
+          />
+        </div>
+
+        <div id="folderSetupError" class="input-error"></div>
+        <button id="folderSetupBtn" class="save-btn">Complete Setup</button>
+      </div>
+    </div>
+
+    <div id="folderRecoveryModal" class="modal">
+      <div class="modal-content folder-recovery-modal">
+        <h2>Password Recovery</h2>
+        <p>Answer your security questions to reset your password</p>
+
+        <div class="recovery-section">
+          <label for="folderRecoveryQuestion1"
+            >Question 1: What is your date of birth? (YYYY-MM-DD)</label
+          >
+          <input
+            type="text"
+            id="folderRecoveryQuestion1"
+            class="modal-input"
+            placeholder="e.g., 1990-05-15"
+            aria-label="Recovery question 1"
+          />
+
+          <label for="folderRecoveryQuestion2"
+            >Question 2: What college/university did you attend?</label
+          >
+          <input
+            type="text"
+            id="folderRecoveryQuestion2"
+            class="modal-input"
+            placeholder="e.g., MIT"
+            aria-label="Recovery question 2"
+          />
+        </div>
+
+        <div class="recovery-section">
+          <h3>Set New Password</h3>
+          <label for="folderRecoveryNewPassword">New Password:</label>
+          <input
+            type="password"
+            id="folderRecoveryNewPassword"
+            class="modal-input"
+            placeholder="Enter new password"
+            aria-label="New recovery password"
+          />
+          <label for="folderRecoveryConfirmPassword">Confirm Password:</label>
+          <input
+            type="password"
+            id="folderRecoveryConfirmPassword"
+            class="modal-input"
+            placeholder="Confirm new password"
+            aria-label="Confirm new recovery password"
+          />
+        </div>
+
+        <div id="folderRecoveryError" class="input-error"></div>
+        <div class="recovery-actions">
+          <button id="folderRecoverySubmitBtn" class="save-btn">
+            Reset Password
+          </button>
+          <button id="folderRecoveryCancelBtn" class="data-btn">Cancel</button>
+          <button id="folderResetFolderBtn" class="data-btn danger">
+            Reset Folder & Password
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="folderNoteModal" class="modal">
+      <div class="modal-content">
+        <button id="folderNoteClose" class="close" aria-label="Close modal">
+          &times;
+        </button>
+        <h2>Folder Note</h2>
+        <label for="folderTitleInput">Folder Title</label>
+        <input
+          type="text"
+          id="folderTitleInput"
+          class="modal-input"
+          placeholder="Enter folder title"
+          aria-label="Folder title"
+        />
+        <label for="folderDetailsText">Details</label>
+        <textarea
+          id="folderDetailsText"
+          class="modal-input"
+          placeholder="Enter notes for this folder"
+          aria-label="Folder details"
+          rows="8"
+        ></textarea>
+        <div class="important-toggle">
+          <label>
+            <input type="checkbox" id="folderImportantInput" />
+            Mark folder as important
+          </label>
+        </div>
+        <div class="file-upload-section">
+          <label for="folderFileInput">Attach files to this folder:</label>
+          <input
+            type="file"
+            id="folderFileInput"
+            class="file-input"
+            multiple
+            aria-label="Upload files for this folder"
+          />
+          <div id="folderUploadedFiles" class="uploaded-files"></div>
+        </div>
+        <div class="folder-note-actions">
+          <button id="folderSaveBtn" class="save-btn">Save Folder</button>
+          <button id="folderDeleteBtn" class="data-btn">Delete Folder</button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="filePreviewOverlay"
+      class="file-preview-overlay"
+      aria-hidden="true"
+    >
+      <div
+        class="file-preview-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="filePreviewTitle"
+      >
+        <button
+          id="filePreviewClose"
+          class="file-preview-close"
+          aria-label="Close preview"
+        >
+          &times;
+        </button>
+        <div class="file-preview-header">
+          <h3 id="filePreviewTitle">Preview</h3>
+          <div class="file-preview-actions">
+            <button id="filePreviewOpenBtn" class="preview-btn" disabled>
+              Open in new tab
+            </button>
+            <button id="filePreviewDownloadBtn" class="preview-btn" disabled>
+              Download
+            </button>
+          </div>
+        </div>
+        <div id="filePreviewContent" class="file-preview-content"></div>
+      </div>
+    </div>
+
+    <div
+      id="printPreviewOverlay"
+      class="print-preview-overlay"
+      aria-hidden="true"
+    >
+      <div
+        class="print-preview-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="printPreviewTitle"
+      >
+        <button
+          id="printPreviewClose"
+          class="file-preview-close"
+          aria-label="Close preview"
+        >
+          &times;
+        </button>
+        <div class="file-preview-header">
+          <h3 id="printPreviewTitle">Highlights Preview</h3>
+          <div class="file-preview-actions">
+            <button id="printPreviewPrintBtn" class="preview-btn">
+              Save as PDF
+            </button>
+          </div>
+        </div>
+        <div id="printPreviewContent" class="file-preview-content"></div>
+      </div>
+    </div>
+
+    <div id="infoModal" class="modal">
+      <div class="modal-content info-modal-content">
+        <button id="infoModalClose" class="close" aria-label="Close info">
+          &times;
+        </button>
+        <h2>Life Weeks Tracker</h2>
+        <p class="info-intro">
+          Your personal weekly journal for capturing achievements, memories, and
+          progress in every week of life. Track your journey with meaningful entries,
+          trips, experiences, and daily progress.
+        </p>
+        <div class="info-section">
+          <h3>Getting Started</h3>
+          <p>
+            Set your date of birth once using the top controls. You can change
+            it later with the <strong>Change DOB</strong> button.
+          </p>
+        </div>
+        <div class="info-section">
+          <h3>Add Weekly Highlights</h3>
+          <ol>
+            <li>Click any week tile in the grid.</li>
+            <li>Enter your highlights in the text area.</li>
+            <li>Mark the week as important if it deserves special emphasis.</li>
+            <li>Attach files to the week using the file picker.</li>
+            <li>
+              Save your changes with the
+              <strong>Save Highlights</strong> button.
+            </li>
+          </ol>
+        </div>
+        <div class="info-section">
+          <h3>Tips & Tricks</h3>
+          <ul style="padding-left: 20px; margin: 0;">
+            <li>Write about trips and travel experiences to create memories.</li>
+            <li>Attach photos and documents to weeks for visual storytelling.</li>
+            <li>Use the Important flag for milestone weeks or special moments.</li>
+            <li>Review past weeks regularly to reflect on your growth.</li>
+            <li>Export your data monthly as a backup for safety.</li>
+            <li>Search previous weeks to find specific events or achievements.</li>
+            <li>Use the Secure Folder for private thoughts and confidential notes.</li>
+          </ul>
+        </div>
+        <div class="info-section">
+          <h3>Search & Filter</h3>
+          <p>
+            Use the search box to find weeks by highlight text. Toggle between
+            all weeks and remaining weeks with <strong>Show All Weeks</strong>.
+          </p>
+        </div>
+        <div class="info-section">
+          <h3>Export & Print</h3>
+          <p>
+            Use <strong>Export</strong> to back up your data as JSON and
+            <strong>Import</strong> to restore it later.
+          </p>
+          <p>
+            Use <strong>Print Highlights</strong> to open a printable report of
+            saved highlights and save it as PDF.
+          </p>
+        </div>
+        <div class="info-section">
+          <h3>Secure Folder</h3>
+          <p>
+            The <strong>Folder</strong> feature lets you store private notes and
+            attachments behind a password and recovery questions.
+          </p>
+        </div>
       </div>
     </div>
 
