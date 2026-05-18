@@ -28,8 +28,13 @@ export default defineConfig({
     rollupOptions: {
       output: {
         // Optimize chunking strategy
-        manualChunks: {
-          'vendor': ['./src/modules/storage.js'],
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
+          if (id.includes('/modules/')) {
+            return 'modules';
+          }
         },
         entryFileNames: 'assets/[name].[hash].js',
         chunkFileNames: 'assets/[name].[hash].js',
