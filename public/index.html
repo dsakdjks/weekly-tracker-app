@@ -2,14 +2,31 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta
       name="description"
       content="Life Weeks Tracker - Track your life in weeks and add meaningful highlights to each week."
     />
     <meta name="theme-color" content="#667eea" />
-    <title>Life Weeks Tracker - Your Journey in Weeks</title>
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Life Weeks" />
+    
+    <!-- Preconnect to critical resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    
+    <!-- Preload critical CSS -->
+    <link rel="preload" href="./styles.css" as="style" />
+    
+    <!-- Web App Manifest for PWA -->
+    <link rel="manifest" href="./manifest.json" />
+    
+    <!-- Main stylesheet -->
     <link rel="stylesheet" href="./styles.css" />
+    
+    <title>Life Weeks Tracker - Your Journey in Weeks</title>
   </head>
   <body>
     <div id="dataPreservationAlert" class="data-preservation-alert">

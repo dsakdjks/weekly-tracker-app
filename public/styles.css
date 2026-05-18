@@ -1,7 +1,71 @@
+/* ============================================
+   PERFORMANCE & SCALABILITY OPTIMIZATIONS
+   ============================================ */
+
+/* CSS Custom Properties for easy theming and maintenance */
+:root {
+  /* Colors */
+  --color-primary: #667eea;
+  --color-primary-dark: #764ba2;
+  --color-secondary: #f093fb;
+  --color-secondary-dark: #f5576c;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-gray-light: #f8fafc;
+  --color-gray-medium: #e5e7eb;
+  --color-gray-dark: #4b5563;
+  
+  /* Spacing scale */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 20px;
+  --space-2xl: 24px;
+  --space-3xl: 32px;
+  --space-4xl: 40px;
+  
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 15px;
+  --radius-2xl: 20px;
+  --radius-full: 999px;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0 25px 80px rgba(0, 0, 0, 0.3);
+  
+  /* Typography */
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  --font-size-sm: 0.85rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.1rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 2em;
+  --font-size-4xl: 2.5em;
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.2s ease;
+  --transition-slow: 0.3s ease;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+/* Enable GPU acceleration for smooth animations */
+*, *::before, *::after {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .data-preservation-alert {
@@ -75,6 +139,37 @@
   to {
     transform: translateY(-100%);
     opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
   }
 }
 
@@ -216,13 +311,14 @@ h1 {
 .data-btn {
   padding: 12px 25px;
   border: none;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
   color: white;
   font-size: 1em;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--transition-base);
   font-weight: 600;
+  will-change: transform, box-shadow;
 }
 
 .toggle-btn:hover,
@@ -971,41 +1067,353 @@ h1 {
   }
 }
 
-@media (max-width: 768px) {
+/* ============================================
+   RESPONSIVE DESIGN - Mobile First Approach
+   ============================================ */
+
+/* Small devices (phones, 320px and up) */
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+
   .container {
-    padding: 20px;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   }
 
   h1 {
-    font-size: 1.8em;
+    font-size: 1.5em;
+    margin-bottom: 8px;
+  }
+
+  .tagline {
+    font-size: 0.95em;
+    margin-bottom: 20px;
   }
 
   .stats {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
 
-  .weeks-grid {
-    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  .stat-card {
+    padding: 18px;
+    border-radius: 12px;
+  }
+
+  .stat-label {
+    font-size: 0.8em;
+    margin-bottom: 8px;
+  }
+
+  .stat-value {
+    font-size: 1.6em;
+  }
+
+  .age-info {
+    font-size: 0.95em;
+    margin-top: 10px;
+  }
+
+  .controls {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .toggle-btn,
+  .save-btn,
+  .data-btn {
+    padding: 11px 16px;
+    font-size: 0.9em;
+    border-radius: 8px;
+    width: 100%;
   }
 
   .search-input {
     width: 100%;
-    max-width: 300px;
-  }
-
-  .controls {
-    flex-direction: column;
-    gap: 10px;
+    padding: 10px 16px;
+    font-size: 1em;
   }
 
   .data-controls {
     width: 100%;
-    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: stretch;
+  }
+
+  .data-btn {
+    width: 100%;
+  }
+
+  .weeks-grid {
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    gap: 8px;
+  }
+
+  .week {
+    min-height: 110px;
+    padding: 6px;
+  }
+
+  .week-number {
+    font-size: 1em;
+    margin-bottom: 3px;
+  }
+
+  .week-date {
+    font-size: 0.55em;
   }
 
   .modal-content {
     width: 95%;
+    max-width: 100%;
+    padding: 20px;
+    margin: 10px auto;
   }
+
+  .modal-content h2 {
+    font-size: 1.4em;
+    margin-bottom: 12px;
+  }
+
+  #highlightsText {
+    height: 200px;
+    padding: 12px;
+    font-size: 0.95em;
+  }
+
+  .modal-input {
+    padding: 10px 12px;
+    font-size: 1em;
+    margin-bottom: 12px;
+  }
+
+  .save-btn {
+    width: 100%;
+    margin-top: 16px;
+  }
+
+  .file-name {
+    max-width: 150px;
+    font-size: 0.9em;
+  }
+
+  .file-item {
+    padding: 10px 12px;
+  }
+
+  .file-remove {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+
+  .file-preview-panel {
+    max-height: 85vh;
+    padding: 16px;
+  }
+
+  .file-preview-content {
+    height: calc(100vh - 200px);
+  }
+
+  .print-preview-panel {
+    max-height: 85vh;
+    padding: 16px;
+  }
+
+  .print-week-card {
+    padding: 12px;
+  }
+
+  .print-week-title {
+    font-size: 0.95em;
+  }
+
+  .print-week-dates,
+  .print-week-label {
+    font-size: 0.85em;
+  }
+
+  .setup-section,
+  .recovery-section {
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+
+  .setup-section h3,
+  .recovery-section h3 {
+    font-size: 1em;
+  }
+
+  .recovery-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .recovery-actions .save-btn,
+  .recovery-actions .data-btn {
+    min-width: unset;
+  }
+
+  .info-modal-content {
+    padding: 20px 16px;
+    max-width: 95vw;
+  }
+
+  .info-section {
+    padding: 12px 14px;
+    margin-bottom: 16px;
+  }
+
+  .info-section h3 {
+    font-size: 1em;
+  }
+
+  .info-section p,
+  .info-section li {
+    font-size: 0.9em;
+  }
+
+  .data-preservation-alert {
+    padding: 12px 14px;
+  }
+
+  .alert-message {
+    font-size: 0.85em;
+  }
+
+  .alert-close {
+    padding: 4px 8px;
+    font-size: 1.1em;
+  }
+
+  body.data-alert-visible {
+    padding-top: 60px;
+  }
+}
+
+/* Medium devices (tablets, 481px to 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  body {
+    padding: 15px;
+  }
+
+  .container {
+    padding: 25px;
+    border-radius: 16px;
+  }
+
+  h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
+
+  .tagline {
+    font-size: 1em;
+    margin-bottom: 25px;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .stat-card {
+    padding: 20px;
+  }
+
+  .stat-label {
+    font-size: 0.85em;
+  }
+
+  .stat-value {
+    font-size: 1.8em;
+  }
+
+  .age-info {
+    font-size: 1em;
+  }
+
+  .controls {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 25px;
+  }
+
+  .toggle-btn,
+  .data-btn {
+    padding: 11px 18px;
+    font-size: 0.9em;
+  }
+
+  .search-input {
+    width: 100%;
+    grid-column: 1 / -1;
+  }
+
+  .data-controls {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .weeks-grid {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 10px;
+  }
+
+  .week {
+    min-height: 120px;
+    padding: 7px;
+  }
+
+  .week-number {
+    font-size: 1.1em;
+  }
+
+  .week-date {
+    font-size: 0.6em;
+  }
+
+  .modal-content {
+    width: 90%;
+    max-width: 550px;
+    padding: 25px;
+  }
+
+  #highlightsText {
+    height: 220px;
+  }
+
+  .file-name {
+    max-width: 200px;
+  }
+
+  .file-preview-content {
+    height: calc(100vh - 220px);
+  }
+
+  .info-modal-content {
+    max-width: 650px;
+  }
+
+  body.data-alert-visible {
+    padding-top: 65px;
+  }
+}
+
+/* Large devices (769px and up) */
+@media (min-width: 769px) {
+  /* Default desktop styles apply */
 }
 
 .hidden {
