@@ -214,7 +214,6 @@ export class StorageManager {
       }
       return true;
     } catch (error) {
-      console.error('Failed to save week data:', error);
       return false;
     }
   }
@@ -346,7 +345,6 @@ export class StorageManager {
       });
       return true;
     } catch (error) {
-      console.error('Failed to save folder data:', error);
       return false;
     }
   }
