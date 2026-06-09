@@ -1357,6 +1357,19 @@ h1 {
   body.data-alert-visible {
     padding-top: 60px;
   }
+
+  /* Ensure modals can scroll on very small screens so buttons remain reachable */
+  .modal {
+    align-items: flex-start;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .modal-content {
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    margin: 8px auto;
+  }
 }
 
 /* Medium devices (tablets, 481px to 768px) */
