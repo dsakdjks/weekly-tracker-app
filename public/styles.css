@@ -15,7 +15,7 @@
   --color-gray-light: #f8fafc;
   --color-gray-medium: #e5e7eb;
   --color-gray-dark: #4b5563;
-  
+
   /* Spacing scale */
   --space-xs: 4px;
   --space-sm: 8px;
@@ -25,7 +25,7 @@
   --space-2xl: 24px;
   --space-3xl: 32px;
   --space-4xl: 40px;
-  
+
   /* Border radius */
   --radius-sm: 4px;
   --radius-md: 8px;
@@ -33,15 +33,17 @@
   --radius-xl: 15px;
   --radius-2xl: 20px;
   --radius-full: 999px;
-  
+
   /* Shadows */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
   --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.15);
   --shadow-xl: 0 25px 80px rgba(0, 0, 0, 0.3);
-  
+
   /* Typography */
-  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  --font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   --font-size-sm: 0.85rem;
   --font-size-base: 1rem;
   --font-size-lg: 1.1rem;
@@ -49,7 +51,7 @@
   --font-size-2xl: 1.5rem;
   --font-size-3xl: 2em;
   --font-size-4xl: 2.5em;
-  
+
   /* Transitions */
   --transition-fast: 0.15s ease;
   --transition-base: 0.2s ease;
@@ -63,7 +65,9 @@
 }
 
 /* Enable GPU acceleration for smooth animations */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -312,7 +316,11 @@ h1 {
   padding: 12px 25px;
   border: none;
   border-radius: var(--radius-md);
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-primary-dark) 100%
+  );
   color: white;
   font-size: 1em;
   cursor: pointer;
@@ -810,7 +818,9 @@ h1 {
   cursor: pointer;
   font-size: 0.9rem;
   font-weight: 600;
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
   white-space: nowrap;
   min-height: 44px;
   min-width: 120px;
@@ -990,7 +1000,9 @@ h1 {
   background: #667eea;
   color: white;
   border: none;
-  transition: transform 0.2s ease, background 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
 }
 
 .info-btn:hover {
@@ -1587,6 +1599,41 @@ h1 {
   flex-wrap: wrap;
 }
 
+/* ===== Folder manager mobile fixes ===== */
+/* Ensure folder cards stack and are readable on small screens */
+@media (max-width: 600px) {
+  /* Force the folder manager grid to a single column for readability */
+  #folderManagerModal .weeks-grid,
+  .modal #folderManagerGrid {
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+  }
+
+  /* Make folder cards adapt to width and remove aggressive hover scaling */
+  #folderManagerModal .week,
+  .modal #folderManagerGrid .week {
+    min-height: auto;
+    padding: 12px;
+    align-items: flex-start;
+    text-align: left;
+    transform: none !important;
+  }
+
+  /* Allow folder titles to wrap instead of overflowing */
+  #folderManagerModal .week-number,
+  .modal #folderManagerGrid .week-number {
+    white-space: normal;
+    font-size: 1rem;
+  }
+
+  /* Reduce badge / meta size inside folder cards */
+  #folderManagerModal .week-date,
+  .modal #folderManagerGrid .week-date {
+    font-size: 0.85em;
+    color: var(--text-muted);
+  }
+}
+
 .recovery-actions .save-btn {
   flex: 1;
   min-width: 150px;
@@ -1656,12 +1703,20 @@ h1 {
   border-style: dashed;
   border-width: 2px;
   border-color: rgba(102, 126, 234, 0.35);
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(102, 126, 234, 0.08) 0%,
+    rgba(118, 75, 162, 0.08) 100%
+  );
 }
 
 .folder-card.important {
   border-color: #fbbf24;
-  background: linear-gradient(135deg, rgba(251, 191, 36, 0.15) 0%, rgba(249, 115, 22, 0.15) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(251, 191, 36, 0.15) 0%,
+    rgba(249, 115, 22, 0.15) 100%
+  );
   box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.3);
 }
 

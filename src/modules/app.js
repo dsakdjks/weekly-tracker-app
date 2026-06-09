@@ -142,20 +142,20 @@ class App {
     });
 
     // Split by newlines and format each line that doesn't already have a date
-    const lines = trimmed.split('\n');
-    const formattedLines = lines.map(line => {
+    const lines = trimmed.split("\n");
+    const formattedLines = lines.map((line) => {
       const lineTrimmed = line.trim();
-      if (!lineTrimmed) return '';
-      
+      if (!lineTrimmed) return "";
+
       // Check if line already has a date prefix (em-dash)
-      if (lineTrimmed.includes(' — ')) {
+      if (lineTrimmed.includes(" — ")) {
         return lineTrimmed;
       }
-      
+
       return `${dateLabel} — ${lineTrimmed}`;
     });
 
-    return formattedLines.filter(line => line).join('\n');
+    return formattedLines.filter((line) => line).join("\n");
   }
 
   handleSaveHighlights() {
