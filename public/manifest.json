@@ -1,7 +1,7 @@
 {
-  "name": "Life Weeks Tracker",
-  "short_name": "Life Weeks",
-  "description": "Track your life in weeks and add meaningful highlights to each week",
+  "name": "Weekly Dairy",
+  "short_name": "Weekly Dairy",
+  "description": "Track your life in weeks and add meaningful highlights to each week with Weekly Dairy",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

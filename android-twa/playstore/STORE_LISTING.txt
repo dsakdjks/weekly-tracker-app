@@ -1,7 +1,7 @@
-Title: Life Weeks Tracker
+Title: Weekly Dairy
 Short description: Track your life in weeks and add weekly highlights.
 Full description:
-Life Weeks Tracker visualizes your life in week tiles so you can mark highlights and reflect on progress. Add notes to each week, export/import your data, and keep a private folder for secure entries.
+Weekly Dairy visualizes your life in week tiles so you can mark highlights and reflect on progress. Add notes to each week, export/import your data, and keep a private folder for secure entries.
 
 Category: Productivity
 Content rating: Unrated (configure in Play Console)

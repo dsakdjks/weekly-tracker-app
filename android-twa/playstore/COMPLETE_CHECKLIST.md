@@ -41,7 +41,7 @@ curl https://weeklylifetrackerdairy.netlify.app/.well-known/assetlinks.json | jq
 ### 3. Upload AAB to Play Console (10 min)
 
 - [ ] Log into Google Play Console
-- [ ] Select app "Life Weeks Tracker"
+- [ ] Select app "Weekly Dairy"
 - [ ] Navigate to Release > Production > Create new release
 - [ ] Upload: `android-twa/app/build/outputs/bundle/release/app-release.aab`
 - [ ] Add release notes (e.g., "Initial release")

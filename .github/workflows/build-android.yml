@@ -42,6 +42,16 @@ jobs:
       - name: Make Gradle wrapper executable
         run: chmod +x android-twa/gradlew
 
+      - name: Verify assetlinks fingerprint
+        working-directory: android-twa
+        run: |
+          set -e
+          FINGERPRINT=$(keytool -list -v -keystore upload.keystore -storepass android -alias upload | awk '/SHA256/{print $2; exit}')
+          echo "Keystore SHA256 fingerprint: $FINGERPRINT"
+          if ! grep -q "$FINGERPRINT" ../public/.well-known/assetlinks.json; then
+            echo "WARNING: fingerprint not found in public/.well-known/assetlinks.json"
+          fi
+
       - name: Build Android release bundle
         working-directory: android-twa
         run: ./gradlew clean bundleRelease --no-daemon

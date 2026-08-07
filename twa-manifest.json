@@ -1,0 +1,27 @@
+{
+  "name": "Weekly Dairy",
+  "short_name": "Weekly Dairy",
+  "description": "Track your life in weeks and add meaningful highlights to each week",
+  "start_url": "https://weeklylifetrackerdairy.netlify.app/",
+  "scope": "https://weeklylifetrackerdairy.netlify.app/",
+  "display": "standalone",
+  "theme_color": "#667eea",
+  "background_color": "#ffffff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://via.placeholder.com/192.png?text=LW",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://via.placeholder.com/512.png?text=LW",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["productivity", "lifestyle"],
+  "prefer_related_applications": false
+}
