@@ -4,6 +4,7 @@ export default defineConfig({
   base: process.env.VITE_BASE || "/",
 
   root: "public",
+  publicDir: ".",
 
   build: {
     outDir: "../dist",

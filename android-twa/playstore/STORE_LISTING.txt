@@ -1,0 +1,15 @@
+Title: Life Weeks Tracker
+Short description: Track your life in weeks and add weekly highlights.
+Full description:
+Life Weeks Tracker visualizes your life in week tiles so you can mark highlights and reflect on progress. Add notes to each week, export/import your data, and keep a private folder for secure entries.
+
+Category: Productivity
+Content rating: Unrated (configure in Play Console)
+Contact email: youremail@example.com
+Privacy policy URL: https://weeklylifetrackerdairy.netlify.app/privacy.html (replace with your real URL)
+
+Screenshots: add 4-8 phone screenshots (PNG/JPG), 1024x500 for feature graphic.
+
+Notes:
+- Ensure `start_url` and origin match your hosted site.
+- Host /.well-known/assetlinks.json at https://weeklylifetrackerdairy.netlify.app/.well-known/assetlinks.json
