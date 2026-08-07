@@ -1,0 +1,23 @@
+Weekly Dairy Release Notes
+
+Version: 1.0.0
+
+This initial release delivers the core Weekly Dairy web app experience as a Trusted Web Activity Android app.
+
+Highlights:
+- Full life-week visualization with weekly tiles.
+- Add and save weekly highlights and notes.
+- Secure folder section for protected entries.
+- Export and import JSON data locally for backup/restore.
+- Offline-capable PWA behavior via service worker.
+- Trusted Web Activity packaging for a native Android app experience.
+
+Release Details:
+- App package: com.weeklydairy.app
+- App name: Weekly Dairy
+- Host origin: https://weeklylifetrackerdairy.netlify.app
+- Asset Links configured for Play Store verification.
+
+Update instructions:
+- Users should install via Google Play Store for automatic updates.
+- Data is stored locally and can be exported before clearing browser or app data.

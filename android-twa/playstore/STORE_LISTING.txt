@@ -5,7 +5,7 @@ Weekly Dairy visualizes your life in week tiles so you can mark highlights and r
 
 Category: Productivity
 Content rating: Unrated (configure in Play Console)
-Contact email: youremail@example.com
+Contact email: support@weeklydairy.app
 Privacy policy URL: https://weeklylifetrackerdairy.netlify.app/privacy.html (replace with your real URL)
 
 Screenshots: add 4-8 phone screenshots (PNG/JPG), 1024x500 for feature graphic.
