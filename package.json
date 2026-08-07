@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "test": "vitest --root .",
     "build:analyze": "vite build --minify terser",
     "preview": "vite preview",
     "lint": "eslint src/",
@@ -27,7 +28,8 @@
     "eslint": "^8.55.0",
     "prettier": "^3.1.0",
     "terser": "^5.47.1",
-    "vite": "^8.0.11"
+    "vite": "^8.0.11",
+    "vitest": "^1.6.1"
   },
   "engines": {
     "node": ">=16.0.0",
