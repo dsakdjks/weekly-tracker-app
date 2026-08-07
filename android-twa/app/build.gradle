@@ -21,11 +21,11 @@ plugins {
 }
 
 def twaManifest = [
-    applicationId: 'com.weeklyweekstracker',
+    applicationId: 'com.weeklydairy.app',
     hostName: 'weeklylifetrackerdairy.netlify.app', // The domain being opened in the TWA.
     launchUrl: '/', // The start path for the TWA. Must be relative to the domain.
-    name: 'Life Weeks Tracker', // The application name.
-    launcherName: 'Life Weeks', // The name shown on the Android Launcher.
+    name: 'Weekly Dairy', // The application name.
+    launcherName: 'Weekly Dairy', // The name shown on the Android Launcher.
     themeColor: '#667EEA', // The color used for the status bar.
     themeColorDark: '#000000', // The color used for the dark status bar.
     navigationColor: '#667EEA', // The color used for the navigation bar.
@@ -52,9 +52,9 @@ def twaManifest = [
 
 android {
     compileSdkVersion 36
-    namespace "com.weeklyweekstracker"
+    namespace "com.weeklydairy.app"
     defaultConfig {
-        applicationId "com.weeklyweekstracker"
+        applicationId "com.weeklydairy.app"
         minSdkVersion 21
         targetSdkVersion 36
         versionCode 3
@@ -142,9 +142,18 @@ android {
 
         
     }
+    signingConfigs {
+        release {
+            storeFile file('upload.keystore')
+            storePassword 'android'
+            keyAlias 'upload'
+            keyPassword 'android'
+        }
+    }
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {

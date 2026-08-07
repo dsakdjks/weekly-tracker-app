@@ -12,6 +12,7 @@ Steps to upload app-release.aab to Google Play Console
 5. Review release notes, set rollout percentage, and publish.
 
 Notes about signing:
+
 - This AAB was signed with `android-twa/android.keystore` (alias: android).
 - Play App Signing will ask whether to use Google-managed signing key. It's recommended to opt into Play App Signing.
 

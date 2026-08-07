@@ -1,8 +1,8 @@
 {
-  "packageId": "com.weeklyweekstracker",
+  "packageId": "com.weeklydairy.app",
   "host": "weeklylifetrackerdairy.netlify.app",
-  "name": "Life Weeks Tracker",
-  "launcherName": "Life Weeks",
+  "name": "Weekly Dairy",
+  "launcherName": "Weekly Dairy",
   "display": "standalone",
   "themeColor": "#667EEA",
   "themeColorDark": "#000000",

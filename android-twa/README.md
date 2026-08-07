@@ -15,16 +15,19 @@ This folder is a placeholder for the Android Trusted Web Activity project.
    - Deploy the `dist/` folder to Netlify, Vercel, GitHub Pages, or another HTTPS host.
 
 2. Install Bubblewrap CLI (if not installed):
+
    ```bash
    npm install -g @bubblewrap/cli
    ```
 
 3. Initialize a TWA project:
+
    ```bash
    bubblewrap init --manifest=https://yourdomain.com/manifest.json
    ```
 
 4. Build and run the TWA:
+
    ```bash
    cd <twa-project>
    bubblewrap build

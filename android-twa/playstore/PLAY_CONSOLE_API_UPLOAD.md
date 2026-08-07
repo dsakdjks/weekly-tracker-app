@@ -1,6 +1,7 @@
 # Play Console API Upload Guide
 
 ## Prerequisites:
+
 - Google Play Console account and app created
 - Service account credentials (JSON key file)
 - `bundletool` installed locally
@@ -30,7 +31,7 @@ chmod +x bundletool.jar
 java -jar bundletool.jar upload-bundle \
   --bundle=android-twa/app/build/outputs/bundle/release/app-release.aab \
   --service-account-json=path/to/service-account-key.json \
-  --package-name=com.weeklyweekstracker
+  --package-name=com.weeklydairy.app
 ```
 
 ## Upload via Play Console UI (easiest):
@@ -44,6 +45,7 @@ java -jar bundletool.jar upload-bundle \
 7. Review and publish
 
 ## Troubleshooting:
+
 - If upload fails with "Signature issue", regenerate signing key or check cert fingerprint matches assetlinks.json
-- If "Package name mismatch", verify `build.gradle` applicationId = `com.weeklyweekstracker`
+- If "Package name mismatch", verify `build.gradle` applicationId = `com.weeklydairy.app`
 - If assetlinks not found, ensure it's hosted at `https://yourdomain/.well-known/assetlinks.json` with correct cert fingerprint

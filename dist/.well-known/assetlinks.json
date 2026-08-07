@@ -3,7 +3,7 @@
     "relation": ["delegate_permission/common.handle_all_urls"],
     "target": {
       "namespace": "android_app",
-      "package_name": "com.weeklyweekstracker",
+      "package_name": "com.weeklydairy.app",
       "sha256_cert_fingerprints": [
         "0B:34:86:32:05:4E:0A:69:CC:03:29:BC:06:A8:DA:57:6A:63:D8:92:3D:FB:E8:3F:F3:9F:CC:69:BA:75:A1:78"
       ]

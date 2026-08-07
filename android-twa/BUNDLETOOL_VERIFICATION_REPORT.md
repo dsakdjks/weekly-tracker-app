@@ -8,7 +8,7 @@
 ### Key Details from Bundletool:
 
 1. **Manifest:**
-   - Package: `com.weeklyweekstracker`
+   - Package: `com.weeklydairy.app`
    - Version code: 3
    - Version name: 1.0.0
    - Min SDK: 21 (Android 5.0)
@@ -35,6 +35,7 @@
    - Shortcuts configured (in res/xml/shortcuts.xml)
 
 ### Validation Passed:
+
 - ✅ AAB structure is valid
 - ✅ All required manifests present
 - ✅ App signing configured
@@ -43,6 +44,7 @@
 - ✅ Ready for Google Play upload
 
 ### Next Steps:
+
 1. Upload to Google Play Console (via UI or API)
 2. Review store listing metadata
 3. Configure release rollout (staged or 100%)

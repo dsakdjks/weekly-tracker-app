@@ -268,10 +268,7 @@ export class UIManager {
   }
 
   async handleFileUpload(files) {
-    const list = this.currentUploadContainer === this.elements.folderUploadedFiles ? this.folderAttachments : this.uploadedFilesList;
-    const currentTotalSize = list.reduce((sum, item) => sum + (item.size || 0), 0);
     const newFiles = [];
-    let runningSize = currentTotalSize;
 
     for (const file of files) {
       await new Promise((resolve) => {
@@ -286,7 +283,6 @@ export class UIManager {
             url,
             rawFile: file
           });
-          runningSize += file.size;
           resolve();
         };
         reader.readAsDataURL(file);

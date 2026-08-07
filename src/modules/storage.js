@@ -1,4 +1,5 @@
-import { CONFIG, getTargetDate } from "../config.js";
+import { CONFIG } from "../config.js";
+/* eslint-disable no-empty */
 
 /**
  * Storage manager for handling IndexedDB-backed app storage
@@ -13,7 +14,7 @@ export class StorageManager {
   // Initialize IndexedDB and load caches. Call once at app start.
   static async init() {
     if (this._db) return true;
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, _reject) => {
       const req = indexedDB.open("lifeWeeksDB", 1);
       req.onupgradeneeded = (e) => {
         const db = e.target.result;

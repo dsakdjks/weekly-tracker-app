@@ -13,7 +13,7 @@ export default defineConfig({
     minify: "terser",
     reportCompressedSize: false,
     chunkSizeWarningLimit: 1000,
-    
+
     terserOptions: {
       compress: {
         drop_console: true,
@@ -30,16 +30,16 @@ export default defineConfig({
       output: {
         // Optimize chunking strategy
         manualChunks: (id) => {
-          if (id.includes('node_modules')) {
-            return 'vendor';
+          if (id.includes("node_modules")) {
+            return "vendor";
           }
-          if (id.includes('/modules/')) {
-            return 'modules';
+          if (id.includes("/modules/")) {
+            return "modules";
           }
         },
-        entryFileNames: 'assets/[name].[hash].js',
-        chunkFileNames: 'assets/[name].[hash].js',
-        assetFileNames: 'assets/[name].[hash][extname]',
+        entryFileNames: "assets/[name].[hash].js",
+        chunkFileNames: "assets/[name].[hash].js",
+        assetFileNames: "assets/[name].[hash][extname]",
       },
     },
 

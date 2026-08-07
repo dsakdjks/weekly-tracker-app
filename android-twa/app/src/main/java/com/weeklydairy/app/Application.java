@@ -13,17 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.weeklyweekstracker;
-
-
+package com.weeklydairy.app;
 
 public class Application extends android.app.Application {
 
-  
-
-  @Override
-  public void onCreate() {
-      super.onCreate();
-      
-  }
+    @Override
+    public void onCreate() {
+        super.onCreate();
+    }
 }

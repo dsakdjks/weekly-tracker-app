@@ -1,7 +1,7 @@
 import { WeekManager } from "./weekManager.js";
 import { UIManager } from "./ui.js";
 import { StorageManager } from "./storage.js";
-import { CONFIG, setBirthDate } from "../config.js";
+import { setBirthDate } from "../config.js";
 
 /**
  * Main app manager
@@ -235,31 +235,6 @@ class App {
       // Show password input for existing setup
       this.ui.showFolderAccessModal(true);
     }
-  }
-
-  handleFolderPasswordSubmit() {
-    const password = this.ui.getFolderPassword();
-    if (!password) {
-      this.ui.showFolderPasswordError("Please enter a password");
-      return;
-    }
-
-    if (StorageManager.isFolderPasswordSet()) {
-      if (!StorageManager.verifyFolderPassword(password)) {
-        this.ui.showFolderPasswordError(
-          "Incorrect password. Please try again.",
-        );
-        return;
-      }
-    } else {
-      if (!StorageManager.saveFolderPassword(password)) {
-        this.ui.showFolderPasswordError("Unable to save password. Try again.");
-        return;
-      }
-    }
-
-    this.ui.closeFolderAccessModal();
-    this.loadFolderManager();
   }
 
   handleFolderForgot() {
@@ -655,7 +630,9 @@ export async function init() {
   // Initialize storage (IndexedDB) before using StorageManager
   try {
     await StorageManager.init();
-  } catch {}
+  } catch (error) {
+    // Ignore initialization errors if IndexedDB is not available
+  }
 
   // Show data preservation alert
   if (app.ui) {

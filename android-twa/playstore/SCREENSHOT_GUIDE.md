@@ -1,6 +1,7 @@
 # Play Store Screenshots Template
 
 ## Guidelines:
+
 - Format: PNG or JPG
 - Dimensions: 1080x1920 (portrait) for phone screenshots
 - Max file size: 8 MB per file
@@ -34,6 +35,7 @@
    - Show theme toggle button
 
 ## How to capture on Android emulator or device:
+
 ```bash
 # Connect device or start emulator
 adb devices
@@ -49,6 +51,7 @@ convert screenshot_1.png -resize 1080x1920 screenshot_1_resized.png
 ```
 
 ## Upload in Play Console:
+
 1. Go to Play Console > Your App > Manage > Store listing
 2. Scroll to "Phone screenshots"
 3. Click "Add screenshots"
@@ -56,7 +59,9 @@ convert screenshot_1.png -resize 1080x1920 screenshot_1_resized.png
 5. Save and review
 
 ## Text overlay (optional):
+
 Use GIMP or ImageMagick to add captions:
+
 ```bash
 convert screenshot_1.png \
   -pointsize 60 -fill white \
