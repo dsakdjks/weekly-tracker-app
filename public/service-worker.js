@@ -1,4 +1,4 @@
-// Service Worker for Life Weeks Tracker
+// Service Worker for Weekly Dairy
 // Enables offline functionality and performance optimization through caching
 
 const CACHE_NAME = "life-weeks-tracker-v1";

@@ -647,7 +647,7 @@ export class UIManager {
           <style>${styles}</style>
         </head>
         <body>
-          <h1>Life Weeks Highlights</h1>
+          <h1>Weekly Dairy Highlights</h1>
           <p class="print-note">Use your browser's print dialog to save as PDF.</p>
           ${weeks.map((week) => `
             <section class="print-week-card">
